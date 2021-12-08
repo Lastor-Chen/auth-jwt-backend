@@ -1,9 +1,10 @@
-var express = require('express');
-var router = express.Router();
+// @ts-check
+const apisRouter = require('./apis')
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+/** @param {import('express').Application} app */
+function addRouter(app) {
+  app.get('/', (req, res) => { res.render('index') })
+  app.use('/api/v1', apisRouter)
+}
 
-module.exports = router;
+module.exports = addRouter;
